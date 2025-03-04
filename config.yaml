@@ -1,0 +1,88 @@
+# Niche Researcher Configuration
+
+# API Keys
+apis:
+  pytrends:
+    timeout: 60
+    retries: 3
+  amazon:
+    api_key: "your_amazon_key_here"
+    secret: "your_amazon_secret_here"
+  shopify:
+    api_key: "your_shopify_key_here"
+    secret: "your_shopify_secret_here"
+
+# Proxy Configuration
+proxy:
+  enabled: true
+  rotation: true
+  providers:
+    - type: "http"
+      url: "http://proxy1.example.com:8080"
+    - type: "http"
+      url: "http://proxy2.example.com:8080"
+    - type: "socks5"
+      url: "socks5://proxy3.example.com:1080"
+
+# Scraping Parameters
+scraping:
+  max_retries: 3
+  timeout: 30
+  delay_between_requests: 2
+  user_agents:
+    - "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+    - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15"
+  
+# Platforms to Scrape
+platforms:
+  - name: "tiktok"
+    enabled: true
+    base_url: "https://www.tiktok.com/tag/"
+    tags: ["affiliatemarketing", "makemoney", "sidehustle", "passiveincome", "nichemarketing"]
+  - name: "amazon"
+    enabled: true
+    base_url: "https://www.amazon.com/best-sellers/"
+    categories: ["electronics", "home-garden", "sports-outdoors", "beauty", "toys-games"]
+  - name: "reddit"
+    enabled: true
+    base_url: "https://www.reddit.com/r/"
+    subreddits: ["Entrepreneur", "sidehustle", "affiliatemarketing", "smallbusiness", "startups"]
+  - name: "youtube"
+    enabled: true
+    search_queries: ["affiliate marketing", "passive income", "niche products", "trending products", "make money online"]
+  - name: "google_trends"
+    enabled: true
+
+# Trend Analysis Parameters
+trend_analysis:
+  growth_weight: 0.7
+  competition_weight: 0.3
+  min_growth_percentage: 15
+  date_range: "6mo"
+  
+# Output Configuration
+output:
+  default_format: "markdown"
+  available_formats: ["markdown", "csv", "json", "html"]
+  output_directory: "reports"
+  report_filename: "niche_report"
+  include_date_in_filename: true
+  
+# Plugin System
+plugins:
+  enabled: true
+  directory: "plugins"
+  affiliate_networks:
+    - name: "amazon_associates"
+      enabled: true
+    - name: "clickbank"
+      enabled: true
+    - name: "shareasale"
+      enabled: true
+  scoring_algorithms:
+    - name: "default"
+      enabled: true
+    - name: "competition_focused"
+      enabled: false
+    - name: "growth_focused"
+      enabled: false
