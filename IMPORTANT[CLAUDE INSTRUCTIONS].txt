@@ -1,0 +1,162 @@
+﻿Claude 3.7 Project Creation Prompt
+
+plaintext
+Copy
+Act as a full-stack Python developer and data analyst. Create a complete niche research toolkit with these files and capabilities:
+
+### 1. Project Structure
+Create these files:
+- 📂 niche_researcher/  
+  ├── 📄 scraper_engine.py    # Browser automation module  
+  ├── 📄 trend_analyzer.py   # Data processing logic  
+  ├── 📄 report_generator.py # Output formatting  
+  ├── 📄 config.yaml         # API keys/parameters  
+  └── 📄 requirements.txt    # Dependencies  
+
+### 2. Technical Specifications
+**A. Virtual Environment Setup**
+```bash
+python -m venv niche_env
+source niche_env/bin/activate  # Linux/Mac
+.\niche_env\Scripts\activate  # Windows
+pip install -r requirements.txt
+B. requirements.txt Contents
+
+Copy
+browser-use==1.4.2
+pandas>=2.0.0
+pytrends==5.0.0
+beautifulsoup4==4.12.0
+requests==2.31.0
+pyyaml==6.0.1
+3. Core Functionality
+A. Scraper Engine (scraper_engine.py)
+
+Browser automation with 3 retry attempts
+
+CSS selector bank for platform-specific elements:
+
+python
+Copy
+PLATFORM_SELECTORS = {
+    'tiktok': {'hashtags': '.hashtag'},
+    'amazon': {'products': '[data-zg-item]'},
+    'reddit': {'posts': '[data-testid="post-container"]'}
+}
+Proxy rotation support
+
+Example method:
+
+python
+Copy
+def scrape_tiktok_hashtags():
+    with Browser(headless=True, proxy=config['proxy']) as driver:
+        driver.goto("https://www.tiktok.com/tag/affiliatemarketing")
+        return [tag.text for tag in driver.find_elements(PLATFORM_SELECTORS['tiktok']['hashtags'])]
+B. Trend Analyzer (trend_analyzer.py)
+
+Calculate opportunity score:
+
+python
+Copy
+def calculate_score(growth_pct, competition):
+    return (growth_pct * 0.7) - (competition * 0.3)
+Affiliate program database:
+
+python
+Copy
+AFFILIATE_DB = {
+    'AI Tools': ['Jasper', 'Copy.ai'],
+    'Fitness': ['Bodybuilding.com', 'MyProtein']
+}
+C. Report Generator (report_generator.py)
+
+Generate Markdown/CSV reports
+
+Competitive analysis matrix
+
+Content calendar suggestions
+
+4. Workflow Sequence
+Initialize browser session with proxy
+
+Scrape 5 platforms simultaneously
+
+Clean data with pandas
+
+Calculate 6-month growth trends
+
+Cross-reference affiliate databases
+
+Generate ranked list with scores
+
+Export to reports/niche_report.md
+
+5. Required Output Format
+markdown
+Copy
+# Top Trending Niches Report - {date}
+
+1. **AI-Powered Pet Tech** (Score: 92/100)
+   - 📈 Growth: +315% (6mo)
+   - 💰 Monetization: High (Recurring subscriptions)
+   - 🛠️ Affiliate Programs: Petcube, Chewy, Amazon
+   - 📱 Content Strategy:  
+     - TikTok: "Smart feeders comparison"  
+     - YouTube: "Automated grooming tech review"
+   - 🥊 Competition: Low (23% market saturation)
+6. Error Handling Requirements
+Auto-selector fallback system
+
+CAPTCHA detection with manual solve prompt
+
+Rate limiting (max 5 reqs/minute)
+
+Data validation pipeline:
+
+python
+Copy
+def validate_dataset(df):
+    return df.dropna().query('growth_pct > 15')
+7. Customization Hooks
+Add new platforms via YAML config
+
+Plugin system for affiliate networks
+
+Custom scoring algorithm injection
+
+8. Sample Input/Output
+Input Command:
+
+bash
+Copy
+python -m niche_researcher --platforms amazon tiktok --format csv
+Output:
+
+csv
+Copy
+Rank,Niche,Score,Growth,Affiliates
+1,AI Pet Tech,92,315%,"Petcube,Chewy"
+2,Solar Camping,87,280%,"Goal Zero,REI"
+9. Documentation Requirements
+Troubleshooting guide for common errors
+
+Video tutorial outline for non-technical users
+
+API integration checklist (Shopify, ClickBank)
+
+Copy
+
+---
+
+**Key Improvements Over Previous Version:**  
+1. Full file structure specification  
+2. Detailed error handling architecture  
+3. Plugin system for future expansion  
+4. Competition scoring algorithm  
+5. Multi-output format support  
+6. Proxy/rate limiting management  
+7. Data validation pipeline  
+8. Platform selector database  
+
+This prompt gives Claude 3.7 exact technical requirements while maintaining flexibility for creative problem-solving in browser automation and data analysis components.
